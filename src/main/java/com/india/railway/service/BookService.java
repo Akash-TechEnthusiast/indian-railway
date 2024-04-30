@@ -12,6 +12,19 @@ import com.india.railway.repository.BookRepository;
 public class BookService {
 	@Autowired
 	BookRepository bookRepository;
+	
+
+	// Adding/inserting a book into collection
+	public Book addBook(long id,String isbnNumber, String bookName,String category) {
+		Book book = new Book();
+		book.setCategory(category);
+		book.setBookId(id);
+		book.setBookName(bookName);
+		book.setIsbnNumber(isbnNumber);
+		return bookRepository.save(book);
+	}
+	
+	
 	public List<Book> getAllBooks(){
 		return bookRepository.findAll();
 	}
@@ -28,15 +41,6 @@ public class BookService {
 		return book;
 	}
 	
-	// Adding/inserting a book into collection
-	public Book addBook(long id,String isbnNumber, String bookName,String category) {
-		Book book = new Book();
-		book.setCategory(category);
-		book.setBookId(id);
-		book.setBookName(bookName);
-		book.setIsbnNumber(isbnNumber);
-		return bookRepository.save(book);
-	}
 
 	// Delete a book from collection
 	public int deleteBook(long bookId){

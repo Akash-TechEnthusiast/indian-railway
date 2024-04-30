@@ -12,14 +12,34 @@ import org.springframework.web.bind.annotation.RestController;
 import com.india.railway.model.Book;
 import com.india.railway.service.BookService;
 
+import lombok.extern.slf4j.Slf4j;
+
 @RestController
+@Slf4j
 public class BookController {
 
-	// http://localhost:9191/addBook?bookId=1&isbnNumber=12345&bookName=JavaBasics&category=Programming
-	// http://localhost:9191/getAllBooks
-	// http://localhost:9191/getBook?category=Programming
+	
 	@Autowired
 	BookService bookService;
+	
+	@RequestMapping("/addBook")
+	@ResponseBody
+	public String addBook(@RequestParam("bookId") long bookId,@RequestParam("isbnNumber") String isbnNumber,
+						@RequestParam("bookName") String bookName,
+						@RequestParam("category") String category){
+	    log.info("Info level"); 
+	    log.error("Error level"); 
+		if(bookService.addBook(bookId,isbnNumber,bookName,category) != null){
+			return "Book got Added Successfully";
+		}else{
+			return "Something went wrong !";
+		}
+	}
+	
+	// http://localhost:9191/addBook?bookId=1&isbnNumber=12345&bookName=JavaBasics&category=Programming
+		// http://localhost:9191/getAllBooks
+		// http://localhost:9191/getBook?category=Programming
+	
 	
 	@RequestMapping("/getAllBooks")
 	@ResponseBody
@@ -39,17 +59,7 @@ public class BookController {
 		return bookService.getBookByBookId(bookId);
 	}
 
-	@RequestMapping("/addBook")
-	@ResponseBody
-	public String addBook(@RequestParam("bookId") long bookId,@RequestParam("isbnNumber") String isbnNumber,
-						@RequestParam("bookName") String bookName,
-						@RequestParam("category") String category){
-		if(bookService.addBook(bookId,isbnNumber,bookName,category) != null){
-			return "Book got Added Successfully";
-		}else{
-			return "Something went wrong !";
-		}
-	}
+
 
 	@RequestMapping("/deleteBook")
 	@ResponseBody
