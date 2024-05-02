@@ -1,52 +1,68 @@
-2024-04-30 17:13:08 [main] INFO  : Starting IndianRailway on KGM-LT-200 with PID 22722 (/home/husen/Downloads/indian-railway/target/classes started by husen in /home/husen/Downloads/indian-railway)
-2024-04-30 17:13:08 [main] INFO  : No active profile set, falling back to default profiles: default
-2024-04-30 17:13:08 [main] INFO  : Multiple Spring Data modules found, entering strict repository configuration mode!
-2024-04-30 17:13:08 [main] INFO  : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-04-30 17:13:08 [main] INFO  : Spring Data JPA - Could not safely identify store assignment for repository candidate interface com.india.railway.repository.BookRepository. If you want this repository to be a JPA repository, consider annotating your entities with one of these annotations: javax.persistence.Entity, javax.persistence.MappedSuperclass (preferred), or consider extending one of the following types with your repository: org.springframework.data.jpa.repository.JpaRepository.
-2024-04-30 17:13:08 [main] INFO  : Spring Data JPA - Could not safely identify store assignment for repository candidate interface com.india.railway.repository.CustomerRepo. If you want this repository to be a JPA repository, consider annotating your entities with one of these annotations: javax.persistence.Entity, javax.persistence.MappedSuperclass (preferred), or consider extending one of the following types with your repository: org.springframework.data.jpa.repository.JpaRepository.
-2024-04-30 17:13:08 [main] INFO  : Finished Spring Data repository scanning in 75ms. Found 1 JPA repository interfaces.
-2024-04-30 17:13:08 [main] INFO  : Multiple Spring Data modules found, entering strict repository configuration mode!
-2024-04-30 17:13:08 [main] INFO  : Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
-2024-04-30 17:13:08 [main] INFO  : Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.india.railway.repository.CustomerRepo. If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository.
-2024-04-30 17:13:08 [main] INFO  : Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.india.railway.repository.UserRepository. If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository.
-2024-04-30 17:13:08 [main] INFO  : Finished Spring Data repository scanning in 9ms. Found 1 MongoDB repository interfaces.
-2024-04-30 17:13:08 [main] INFO  : Multiple Spring Data modules found, entering strict repository configuration mode!
-2024-04-30 17:13:08 [main] INFO  : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-2024-04-30 17:13:08 [main] INFO  : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.india.railway.repository.BookRepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
-2024-04-30 17:13:08 [main] INFO  : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.india.railway.repository.UserRepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
-2024-04-30 17:13:08 [main] INFO  : Finished Spring Data repository scanning in 17ms. Found 1 Redis repository interfaces.
-2024-04-30 17:13:09 [main] INFO  : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2024-04-30 17:13:09 [main] INFO  : Tomcat initialized with port(s): 9191 (http)
-2024-04-30 17:13:09 [main] INFO  : Initializing ProtocolHandler ["http-nio-9191"]
-2024-04-30 17:13:09 [main] INFO  : Starting service [Tomcat]
-2024-04-30 17:13:09 [main] INFO  : Starting Servlet engine: [Apache Tomcat/9.0.30]
-2024-04-30 17:13:09 [main] INFO  : Initializing Spring embedded WebApplicationContext
-2024-04-30 17:13:09 [main] INFO  : Root WebApplicationContext: initialization completed in 1102 ms
-2024-04-30 17:13:09 [main] INFO  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-04-30 17:13:09 [main] INFO  : HHH000412: Hibernate Core {5.4.9.Final}
-2024-04-30 17:13:09 [main] INFO  : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-2024-04-30 17:13:09 [main] INFO  : HikariPool-1 - Starting...
-2024-04-30 17:13:10 [main] INFO  : HikariPool-1 - Start completed.
-2024-04-30 17:13:10 [main] INFO  : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
-2024-04-30 17:13:10 [main] INFO  : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2024-04-30 17:13:10 [main] INFO  : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-04-30 17:13:10 [main] INFO  : Cluster created with settings {hosts=[localhost:27017], mode=MULTIPLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
-2024-04-30 17:13:10 [main] INFO  : Adding discovered server localhost:27017 to client view of cluster
-2024-04-30 17:13:10 [cluster-ClusterId{value='6630d94e99290c11f6085df5', description='null'}-localhost:27017] INFO  : Opened connection [connectionId{localValue:1, serverValue:64}] to localhost:27017
-2024-04-30 17:13:10 [cluster-ClusterId{value='6630d94e99290c11f6085df5', description='null'}-localhost:27017] INFO  : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[3, 6, 8]}, minWireVersion=0, maxWireVersion=6, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=2498687}
-2024-04-30 17:13:10 [cluster-ClusterId{value='6630d94e99290c11f6085df5', description='null'}-localhost:27017] INFO  : Discovered cluster type of STANDALONE
-2024-04-30 17:13:10 [main] WARN  : Registering converter from class java.time.LocalDateTime to class java.time.Instant as reading converter although it doesn't convert from a store-supported type! You might want to check your annotation setup at the converter implementation.
-2024-04-30 17:13:10 [main] WARN  : Registering converter from class java.time.Instant to class java.time.LocalDateTime as reading converter although it doesn't convert from a store-supported type! You might want to check your annotation setup at the converter implementation.
-2024-04-30 17:13:10 [main] WARN  : Registering converter from class java.time.LocalDateTime to class java.time.Instant as reading converter although it doesn't convert from a store-supported type! You might want to check your annotation setup at the converter implementation.
-2024-04-30 17:13:10 [main] WARN  : Registering converter from class java.time.Instant to class java.time.LocalDateTime as reading converter although it doesn't convert from a store-supported type! You might want to check your annotation setup at the converter implementation.
-2024-04-30 17:13:11 [main] WARN  : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-04-30 17:13:11 [main] INFO  : Initializing ExecutorService 'applicationTaskExecutor'
-2024-04-30 17:13:11 [main] INFO  : Starting ProtocolHandler ["http-nio-9191"]
-2024-04-30 17:13:11 [main] INFO  : Tomcat started on port(s): 9191 (http) with context path ''
-2024-04-30 17:13:11 [main] INFO  : Started IndianRailway in 3.514 seconds (JVM running for 4.068)
-2024-04-30 17:14:02 [http-nio-9191-exec-1] INFO  : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-04-30 17:14:02 [http-nio-9191-exec-1] INFO  : Initializing Servlet 'dispatcherServlet'
-2024-04-30 17:14:02 [http-nio-9191-exec-1] INFO  : Completed initialization in 8 ms
-2024-04-30 17:14:02 [http-nio-9191-exec-1] INFO  : Info level
-2024-04-30 17:14:02 [http-nio-9191-exec-1] ERROR : Error level
-2024-04-30 17:14:02 [http-nio-9191-exec-1] INFO  : Opened connection [connectionId{localValue:2, serverValue:65}] to localhost:27017
+2024-05-02 17:28:04 [main] INFO  : Starting IndianRailway on KGM-LT-200 with PID 29694 (/home/husen/Downloads/indian-railway/target/classes started by husen in /home/husen/Downloads/indian-railway)
+2024-05-02 17:28:04 [main] INFO  : No active profile set, falling back to default profiles: default
+2024-05-02 17:28:05 [main] INFO  : Multiple Spring Data modules found, entering strict repository configuration mode!
+2024-05-02 17:28:05 [main] INFO  : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-05-02 17:28:05 [main] INFO  : Spring Data JPA - Could not safely identify store assignment for repository candidate interface com.india.railway.repository.BookRepository. If you want this repository to be a JPA repository, consider annotating your entities with one of these annotations: javax.persistence.Entity, javax.persistence.MappedSuperclass (preferred), or consider extending one of the following types with your repository: org.springframework.data.jpa.repository.JpaRepository.
+2024-05-02 17:28:05 [main] INFO  : Spring Data JPA - Could not safely identify store assignment for repository candidate interface com.india.railway.repository.CustomerRepo. If you want this repository to be a JPA repository, consider annotating your entities with one of these annotations: javax.persistence.Entity, javax.persistence.MappedSuperclass (preferred), or consider extending one of the following types with your repository: org.springframework.data.jpa.repository.JpaRepository.
+2024-05-02 17:28:05 [main] INFO  : Finished Spring Data repository scanning in 63ms. Found 2 JPA repository interfaces.
+2024-05-02 17:28:05 [main] INFO  : Multiple Spring Data modules found, entering strict repository configuration mode!
+2024-05-02 17:28:05 [main] INFO  : Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2024-05-02 17:28:05 [main] INFO  : Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.india.railway.repository.CustomerRepo. If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository.
+2024-05-02 17:28:05 [main] INFO  : Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.india.railway.repository.EmployeRepository. If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository.
+2024-05-02 17:28:05 [main] INFO  : Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.india.railway.repository.UserRepository. If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository.
+2024-05-02 17:28:05 [main] INFO  : Finished Spring Data repository scanning in 5ms. Found 1 MongoDB repository interfaces.
+2024-05-02 17:28:05 [main] INFO  : Multiple Spring Data modules found, entering strict repository configuration mode!
+2024-05-02 17:28:05 [main] INFO  : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2024-05-02 17:28:05 [main] INFO  : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.india.railway.repository.BookRepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2024-05-02 17:28:05 [main] INFO  : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.india.railway.repository.EmployeRepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2024-05-02 17:28:05 [main] INFO  : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.india.railway.repository.UserRepository. If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository.
+2024-05-02 17:28:05 [main] INFO  : Finished Spring Data repository scanning in 15ms. Found 1 Redis repository interfaces.
+2024-05-02 17:28:05 [main] INFO  : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2024-05-02 17:28:05 [main] INFO  : Tomcat initialized with port(s): 9191 (https)
+2024-05-02 17:28:05 [main] INFO  : Initializing ProtocolHandler ["https-jsse-nio-9191"]
+2024-05-02 17:28:05 [main] INFO  : Starting service [Tomcat]
+2024-05-02 17:28:05 [main] INFO  : Starting Servlet engine: [Apache Tomcat/9.0.30]
+2024-05-02 17:28:05 [main] INFO  : Initializing Spring embedded WebApplicationContext
+2024-05-02 17:28:05 [main] INFO  : Root WebApplicationContext: initialization completed in 1314 ms
+2024-05-02 17:28:06 [main] INFO  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-05-02 17:28:06 [main] INFO  : HHH000412: Hibernate Core {5.4.9.Final}
+2024-05-02 17:28:06 [main] INFO  : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2024-05-02 17:28:06 [main] INFO  : HikariPool-1 - Starting...
+2024-05-02 17:28:06 [main] INFO  : HikariPool-1 - Start completed.
+2024-05-02 17:28:06 [main] INFO  : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2024-05-02 17:28:07 [main] INFO  : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-05-02 17:28:07 [main] INFO  : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-05-02 17:28:07 [main] INFO  : Cluster created with settings {hosts=[localhost:27017], mode=MULTIPLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+2024-05-02 17:28:07 [main] INFO  : Adding discovered server localhost:27017 to client view of cluster
+2024-05-02 17:28:07 [cluster-ClusterId{value='66337fcf1d791407f9b25bd8', description='null'}-localhost:27017] INFO  : Opened connection [connectionId{localValue:1, serverValue:70}] to localhost:27017
+2024-05-02 17:28:07 [cluster-ClusterId{value='66337fcf1d791407f9b25bd8', description='null'}-localhost:27017] INFO  : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[3, 6, 8]}, minWireVersion=0, maxWireVersion=6, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=2758995}
+2024-05-02 17:28:07 [cluster-ClusterId{value='66337fcf1d791407f9b25bd8', description='null'}-localhost:27017] INFO  : Discovered cluster type of STANDALONE
+2024-05-02 17:28:07 [main] WARN  : Registering converter from class java.time.LocalDateTime to class java.time.Instant as reading converter although it doesn't convert from a store-supported type! You might want to check your annotation setup at the converter implementation.
+2024-05-02 17:28:07 [main] WARN  : Registering converter from class java.time.Instant to class java.time.LocalDateTime as reading converter although it doesn't convert from a store-supported type! You might want to check your annotation setup at the converter implementation.
+2024-05-02 17:28:07 [main] WARN  : Registering converter from class java.time.LocalDateTime to class java.time.Instant as reading converter although it doesn't convert from a store-supported type! You might want to check your annotation setup at the converter implementation.
+2024-05-02 17:28:07 [main] WARN  : Registering converter from class java.time.Instant to class java.time.LocalDateTime as reading converter although it doesn't convert from a store-supported type! You might want to check your annotation setup at the converter implementation.
+2024-05-02 17:28:07 [main] WARN  : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-05-02 17:28:07 [main] INFO  : Initializing ExecutorService 'applicationTaskExecutor'
+2024-05-02 17:28:08 [main] INFO  : Starting ProtocolHandler ["https-jsse-nio-9191"]
+2024-05-02 17:28:08 [main] INFO  : Tomcat started on port(s): 9191 (https) with context path ''
+2024-05-02 17:28:08 [main] INFO  : Tomcat initialized with port(s): 9001 (https)
+2024-05-02 17:28:08 [main] INFO  : Initializing ProtocolHandler ["https-jsse-nio-127.0.0.1-9001"]
+2024-05-02 17:28:08 [main] INFO  : Starting service [Tomcat]
+2024-05-02 17:28:08 [main] INFO  : Starting Servlet engine: [Apache Tomcat/9.0.30]
+2024-05-02 17:28:08 [main] INFO  : Initializing Spring embedded WebApplicationContext
+2024-05-02 17:28:08 [main] INFO  : Root WebApplicationContext: initialization completed in 102 ms
+2024-05-02 17:28:08 [main] INFO  : Exposing 4 endpoint(s) beneath base path '/actuator'
+2024-05-02 17:28:08 [main] INFO  : Starting ProtocolHandler ["https-jsse-nio-127.0.0.1-9001"]
+2024-05-02 17:28:08 [main] INFO  : Tomcat started on port(s): 9001 (https) with context path ''
+2024-05-02 17:28:08 [main] INFO  : Started IndianRailway in 4.606 seconds (JVM running for 5.173)
+2024-05-02 17:28:16 [https-jsse-nio-127.0.0.1-9001-exec-5] INFO  : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-05-02 17:28:16 [https-jsse-nio-127.0.0.1-9001-exec-5] INFO  : Initializing Servlet 'dispatcherServlet'
+2024-05-02 17:28:16 [https-jsse-nio-127.0.0.1-9001-exec-5] INFO  : Completed initialization in 8 ms
+2024-05-02 17:29:51 [https-jsse-nio-127.0.0.1-9001-exec-8] INFO  : Opened connection [connectionId{localValue:2, serverValue:71}] to localhost:27017
+2024-05-02 17:29:51 [boundedElastic-1] INFO  : Starting without optional epoll library
+2024-05-02 17:29:51 [boundedElastic-1] INFO  : Starting without optional kqueue library
+2024-05-02 18:03:57 [SpringContextShutdownHook] INFO  : Shutting down ExecutorService 'applicationTaskExecutor'
+2024-05-02 18:03:57 [SpringContextShutdownHook] INFO  : Closed connection [connectionId{localValue:2, serverValue:71}] to localhost:27017 because the pool has been closed.
+2024-05-02 18:03:57 [SpringContextShutdownHook] INFO  : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-05-02 18:03:57 [SpringContextShutdownHook] INFO  : HikariPool-1 - Shutdown initiated...
+2024-05-02 18:03:57 [SpringContextShutdownHook] INFO  : HikariPool-1 - Shutdown completed.
