@@ -79,6 +79,25 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+		
+		
+	
+    <!-- Kie API -->
+   
+    
+<dependency>
+    <groupId>org.drools</groupId>
+    <artifactId>knowledge-api</artifactId>
+    <version>6.2.0.Final</version>
+</dependency>
+    <!-- Kie Scanner -->
+ 
+
+  
+    <!-- Kie Workbench Maven Support -->
+ 
+    
+    
 	</dependencies>
 
 	<build>

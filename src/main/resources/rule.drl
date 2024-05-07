@@ -1,0 +1,24 @@
+package com.example.rules
+
+import com.example.rules.Fact;
+
+rule "Rule 1"
+when
+    // Condition: Define conditions here
+      
+    $fact: Fact(value > 10)
+then
+    // Action: Define actions here
+ 
+    System.out.println("Rule 1 triggered for Fact with value: " + $fact.getValue());
+end
+
+rule "Rule 2"
+when
+    // Condition: Define conditions here
+    $fact: Fact(value < 5)
+then
+    // Action: Define actions here
+    System.out.println("Rule 2 triggered for Fact with value: " + $fact.getValue());
+end
+   

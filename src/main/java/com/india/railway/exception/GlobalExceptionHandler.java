@@ -12,12 +12,11 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ControllerAdvice
 public class GlobalExceptionHandler {
  
-    @ExceptionHandler(value = NoSuchEmployeeExistsException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public @ResponseBody ErrorResponse handleException(NoSuchEmployeeExistsException ex)
-    {
-        return new ErrorResponse(HttpStatus.NOT_FOUND.value(), ex.getMessage());
-    }
+	@ExceptionHandler(value = NoSuchEmployeeExistsException.class)
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	public @ResponseBody ErrorResponse handleException(NoSuchEmployeeExistsException ex) {
+		return new ErrorResponse(HttpStatus.NOT_FOUND.value(), ex.getMessage());
+	}
     
 	
 	@ExceptionHandler(value = EmployeeAlreadyExistsException.class)

@@ -46,19 +46,19 @@ public class EmployeeController {
 
 	// Add new Customer
 	@PostMapping("/addEmployee")
-	public String addEmployee(@RequestBody Employee customer) {
-		 log.info("Info level================>>"+customer.toString()); 
+	public String addEmployee(@RequestBody Employee employee) {
+		 log.info("Info level================>>"+employee.toString()); 
 		    log.error("Error level"); 
-		return employeeService.addEmployee(customer);
+		return employeeService.addEmployee(employee);
 	}
 
 	// Update Customer details
 	@PutMapping("/updateEmployee")
-	public String updateEmployee(@RequestBody Employee customer) {
-		return employeeService.updateEmployee(customer);
+	public String updateEmployee(@RequestBody Employee employee) {
+		return employeeService.updateEmployee(employee);
 	}
 	
-	@PutMapping("/getAllEmployee")
+	@GetMapping("/getAllEmployee")
 	public List<Employee> getAllEmployee() {
 		return employeeService.getAllEmployee();
 	}
