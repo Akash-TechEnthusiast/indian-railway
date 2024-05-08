@@ -2,6 +2,7 @@ package com.india.railway;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Properties;
 import java.util.Set;
 
 import org.drools.KnowledgeBase;
@@ -14,8 +15,11 @@ import org.drools.io.ResourceFactory;
 import org.drools.runtime.StatefulKnowledgeSession;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 
 import com.example.rules.Fact;
 import com.example.rules.RuleActivationListener;
@@ -30,11 +34,9 @@ import lombok.extern.slf4j.Slf4j;
 public class  IndianRailway{
 	public static void main(String[] args) {
 
-		countRulesInDroolsFile();
-
+		// countRulesInDroolsFile();
 		SpringApplication.run(IndianRailway.class, args);
 	}
-	
 	
 	private static void countRulesInDroolsFile() {
 
@@ -92,6 +94,21 @@ public class  IndianRailway{
 		ksession.dispose();
 
 	}
+	
+	  @Bean
+	    public JavaMailSender javaMailSender() {
+	        JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+	        mailSender.setHost("smtp.gmail.com");
+	        mailSender.setPort(587);
+	        mailSender.setUsername("ghussenaiah@gmail.com");
+	        mailSender.setPassword("WANAparthy@922");
+
+	        Properties props = mailSender.getJavaMailProperties();
+	        props.put("mail.smtp.auth", "true");
+	        props.put("mail.smtp.starttls.enable", "true");
+
+	        return mailSender;
+	    }
 }
 	    
 

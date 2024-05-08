@@ -3,7 +3,10 @@ package com.india.railway.controller;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -21,6 +24,9 @@ public class BookController {
 	
 	@Autowired
 	BookService bookService;
+	
+	 @Autowired
+	 private JavaMailSender javaMailSender;
 	
 	@RequestMapping("/addBook")
 	@ResponseBody
@@ -70,4 +76,19 @@ public class BookController {
 			return "Something went wrong !";
 		}
 	}
+	
+	
+	 
+		@PostConstruct
+		public void sendMail() {
+
+			/*SimpleMailMessage message = new SimpleMailMessage();
+			message.setTo("akash922.g@gmail.com");
+			message.setSubject("Subject of the email");
+			message.setText("<html><body><h1>Hello, World!</h1><p>This is a test HTML email.</p></body></html>");
+			message.setFrom("ghussenaiah@gmail.com");
+
+			// Send email
+			javaMailSender.send(message);*/
+		}
 }
