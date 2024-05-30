@@ -9,6 +9,5 @@ import org.springframework.stereotype.Repository;
 import com.india.railway.model.Employee;
 
 @Repository
-public interface EmployeRepository
-   extends JpaRepository<Employee, Long> {
+public interface EmployeRepository extends JpaRepository<Employee, Long> {
 }

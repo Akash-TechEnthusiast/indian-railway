@@ -9,3 +9,4 @@ import com.india.railway.model.User;
 public interface UserRepository extends JpaRepository<User, Long> {
     // Define custom queries or methods if needed
 }
+
