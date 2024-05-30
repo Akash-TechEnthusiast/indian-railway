@@ -1,4 +1,7 @@
 package com.india.railway;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -34,8 +37,12 @@ import lombok.extern.slf4j.Slf4j;
 public class  IndianRailway{
 	public static void main(String[] args) {
 
+	
 		// countRulesInDroolsFile();
+		
 		SpringApplication.run(IndianRailway.class, args);
+		
+		  
 	}
 	
 	private static void countRulesInDroolsFile() {
@@ -95,7 +102,7 @@ public class  IndianRailway{
 
 	}
 	
-	  @Bean
+	    @Bean
 	    public JavaMailSender javaMailSender() {
 	        JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
 	        mailSender.setHost("smtp.gmail.com");

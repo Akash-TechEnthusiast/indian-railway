@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+
 import com.india.railway.model.Book;
 import com.india.railway.service.BookService;
+import com.india.railway.utility.Utilitys;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -27,6 +29,10 @@ public class BookController {
 	
 	 @Autowired
 	 private JavaMailSender javaMailSender;
+	 
+	 
+	 @Autowired
+	 private Utilitys utilitys;
 	
 	@RequestMapping("/addBook")
 	@ResponseBody
@@ -82,6 +88,9 @@ public class BookController {
 		@PostConstruct
 		public void sendMail() {
 
+			System.out.println(utilitys.getDateTimeBasedOnTimeZone(null));
+			System.out.println(utilitys.convertToIndianCurrency(345.78));
+		
 			/*SimpleMailMessage message = new SimpleMailMessage();
 			message.setTo("akash922.g@gmail.com");
 			message.setSubject("Subject of the email");
