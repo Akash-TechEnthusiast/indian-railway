@@ -24,4 +24,11 @@ public class Train {
     private Long id;
     private String train_name;
     private String train_number;
+    private String start_date;
+    private String end_date;
+    private String noofcoaches;
+    private String status;               // if cancel or ontime
+    private String start_station;
+    private String end_station;
+   
 }

@@ -5,5 +5,9 @@
 </head>
 <body>
     <h1 th:text="${message}">Welcome to Thymeleaf!</h1>
+    
+    <ul>
+        <li th:each="item : ${items}" th:text="${item}">Item</li>
+    </ul>
 </body>
 </html>
