@@ -1,7 +1,5 @@
 package com.india.railway;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
+
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -19,6 +17,7 @@ import org.drools.runtime.StatefulKnowledgeSession;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.core.env.AbstractEnvironment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -39,7 +38,7 @@ public class  IndianRailway{
 
 	
 		// countRulesInDroolsFile();
-		
+		// System.setProperty(AbstractEnvironment.ACTIVE_PROFILES_PROPERTY_NAME, "dev");
 		SpringApplication.run(IndianRailway.class, args);
 		
 		  
