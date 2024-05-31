@@ -16,7 +16,7 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-
+import org.springframework.data.domain.Sort;
 
 import javax.transaction.Transactional;
 
@@ -46,17 +46,13 @@ public class CollegeService {
     }
 
     public Page<College> getCollegeByName(String id,int page,int size) {
-
-        Pageable pageable = PageRequest.of(page, size);
+    	Sort sort = "desc".equalsIgnoreCase("desc") ? Sort.by("amount").descending() : Sort.by("amount").ascending();
+        Pageable pageable = PageRequest.of(page, size,sort);
+      
         return  collegeRepository.findByName(id, pageable);
     	
        // return collegeRepository.findById(id).orElse(null);
     }
-    
-
-    
-    
-    
     
 
     public void deleteCollege(Long id) {
