@@ -3,6 +3,7 @@ package com.india.railway.controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import com.india.railway.model.College;
@@ -44,9 +45,12 @@ public class CollegeController {
         return collegeService.getAllColleges();
     }
 
-    @GetMapping("/{id}")
-    public College getAuthorById(@PathVariable Long id) {
-        return collegeService.getCollegeById(id);
+    @GetMapping("/byName")
+    public Page<College> getCollegeByName(@RequestParam(name = "name") String name,
+            @RequestParam(name = "page",defaultValue = "0") int page,
+            @RequestParam(name = "size",defaultValue = "10") int size) {
+    
+        return collegeService.getCollegeByName(name,page,size);
     }
 
     @DeleteMapping("/{id}")

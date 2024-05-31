@@ -13,6 +13,11 @@ import com.india.railway.repository.DepartmentRepository;
 import java.util.Iterator;
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+
+
 import javax.transaction.Transactional;
 
 @Service
@@ -37,12 +42,22 @@ public class CollegeService {
     }
 
     public List<College> getAllColleges() {
-        return collegeRepository.findAll();
+        return (List<College>) collegeRepository.findAll();
     }
 
-    public College getCollegeById(Long id) {
-        return collegeRepository.findById(id).orElse(null);
+    public Page<College> getCollegeByName(String id,int page,int size) {
+
+        Pageable pageable = PageRequest.of(page, size);
+        return  collegeRepository.findByName(id, pageable);
+    	
+       // return collegeRepository.findById(id).orElse(null);
     }
+    
+
+    
+    
+    
+    
 
     public void deleteCollege(Long id) {
     	collegeRepository.deleteById(id);
