@@ -30,7 +30,7 @@ public class EmployeeServiceImpl
     // CustomerAlreadyExistsException when customer detail
     // already exist
 	public String addEmployee(Employee employee) {
-		Employee existingEmployee = empRespository.findById(employee.getId()).orElse(null);
+		Employee existingEmployee = empRespository.findById( employee.getId()).orElse(null);
 		if (existingEmployee == null) {
 			empRespository.save(employee);
 			return "Employee added successfully";

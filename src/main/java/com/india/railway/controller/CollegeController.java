@@ -35,7 +35,9 @@ public class CollegeController {
     	col.addDepartment(d1);
     	col.addDepartment(d2);
     	col.addDepartment(d3);
-    	col.setActive(true);
+    	col.setActive(null);
+    
+    
    
     	return collegeService.saveCollege(col);
     }

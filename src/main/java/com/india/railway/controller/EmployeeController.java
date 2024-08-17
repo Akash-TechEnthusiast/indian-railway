@@ -47,7 +47,9 @@ public class EmployeeController {
 	// Add new Customer
 	@PostMapping("/addEmployee")
 	public String addEmployee(@RequestBody Employee employee) {
-		 log.info("Info level================>>"+employee.toString()); 
+		
+		
+		log.info("Info level================>>"+employee.toString());
 		    log.error("Error level"); 
 		return employeeService.addEmployee(employee);
 	}

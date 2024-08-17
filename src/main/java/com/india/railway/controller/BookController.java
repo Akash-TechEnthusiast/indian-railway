@@ -6,6 +6,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -39,7 +40,10 @@ public class BookController {
 	public String addBook(@RequestParam("bookId") long bookId,@RequestParam("isbnNumber") String isbnNumber,
 						@RequestParam("bookName") String bookName,
 						@RequestParam("category") String category){
-	    log.info("Info level"); 
+	    
+		  log.info("Info level");
+		//log.info("Info level"); 
+	    
 	    log.error("Error level"); 
 		if(bookService.addBook(bookId,isbnNumber,bookName,category) != null){
 			return "Book got Added Successfully";
@@ -85,19 +89,20 @@ public class BookController {
 	
 	
 	 
-		@PostConstruct
+		//@PostConstruct
 		public void sendMail() {
 
 			System.out.println(utilitys.getDateTimeBasedOnTimeZone(null));
 			System.out.println(utilitys.convertToIndianCurrency(345.78));
-		
-			/*SimpleMailMessage message = new SimpleMailMessage();
+
+			SimpleMailMessage message = new SimpleMailMessage();
 			message.setTo("akash922.g@gmail.com");
 			message.setSubject("Subject of the email");
 			message.setText("<html><body><h1>Hello, World!</h1><p>This is a test HTML email.</p></body></html>");
 			message.setFrom("ghussenaiah@gmail.com");
 
 			// Send email
-			javaMailSender.send(message);*/
+			javaMailSender.send(message);
+			System.out.println("sent mail");
 		}
 }

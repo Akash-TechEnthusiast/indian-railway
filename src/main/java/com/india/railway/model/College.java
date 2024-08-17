@@ -63,6 +63,10 @@ public class College {
     public void setName(String name) {
         this.name = name;
     }
+    
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
 
     public Set<Department> getDepartment() {
         return department;

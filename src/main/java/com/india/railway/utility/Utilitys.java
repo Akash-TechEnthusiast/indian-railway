@@ -12,6 +12,10 @@ import org.springframework.stereotype.Component;
 public class Utilitys {
 
 	
+
+	// https://localhost:9191/railway/register
+	// https://localhost:9191/railway/upload
+	// https://localhost:9191/railway/authenticate
 	// log file changes
 	//
 	// drl file computtaion

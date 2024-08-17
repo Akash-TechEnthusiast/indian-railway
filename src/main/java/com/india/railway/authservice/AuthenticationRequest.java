@@ -4,6 +4,7 @@ package com.india.railway.authservice;
 
 public class AuthenticationRequest {
     private String username;
+    private String password;
     public String getUsername() {
 		return username;
 	}
@@ -16,8 +17,8 @@ public class AuthenticationRequest {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	private String password;
+	
 
-    // Getters and setters
+    // Getters and Setters
     // ...
 }
