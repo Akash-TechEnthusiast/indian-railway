@@ -1,56 +1,56 @@
 package com.india.railway.email;
 
-import java.io.IOException;
-import java.util.Date;
+
 import java.util.Properties;
 
+import javax.annotation.PostConstruct;
 import javax.mail.Message;
 import javax.mail.MessagingException;
-import javax.mail.Multipart;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
-import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeMultipart;
+import org.springframework.stereotype.Component;
 
+
+@Component
 public class EmailSender {
 
+    @PostConstruct
+	public void sendMail(){
+	final String username = "akash922.g@gmail.com";
+	final String appPassword = "vfupuukqdhkdlyed";  // Generated App Password from Gmail
 
+	// Setting up mail server properties
+	Properties props = new Properties();
+	props.put("mail.smtp.auth", "true");
+	props.put("mail.smtp.starttls.enable", "true");
+	props.put("mail.smtp.host", "smtp.gmail.com");
+	props.put("mail.smtp.port", "587");
 
-public static void sendmail() throws AddressException, MessagingException, IOException {
-	   Properties props = new Properties();
-	   props.put("mail.smtp.auth", "true");
-	   props.put("mail.smtp.starttls.enable", "true");
-	   props.put("mail.smtp.host", "smtp.gmail.com");
-	   props.put("mail.smtp.port", "587");
-	   
-	   Session session = Session.getInstance(props, new javax.mail.Authenticator() {
-	      protected PasswordAuthentication getPasswordAuthentication() {
-	         return new PasswordAuthentication("ghussenaiah@gmail.com", "khqsormcjlmevmf");
-	      }
-	   });
-	   Message msg = new MimeMessage(session);
-	   msg.setFrom(new InternetAddress("ghussenaiah@gmail.com", false));
+	// Creating a new session with an authenticator
+	Session session = Session.getInstance(props, new javax.mail.Authenticator() {
+		protected PasswordAuthentication getPasswordAuthentication() {
+			return new PasswordAuthentication(username, appPassword);
+		}
+	});
 
-	   msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse("akash922.g@gmail.com"));
-	   msg.setSubject("Tutorials point email");
-	   msg.setContent("Tutorials point email", "text/html");
-	   msg.setSentDate(new Date());
+	try {
+		// Creating a new email message
+		MimeMessage message = new MimeMessage(session);
+		message.setFrom(new InternetAddress("akash922.g@gmail.com"));
+		message.setRecipients(Message.RecipientType.TO, InternetAddress.parse("akash.cloudproject@gmail.com"));
+		message.setSubject("Test Email from Java App");
+		message.setText("Hello, this is a test email sent from a Java application using Gmail.");
 
-	   MimeBodyPart messageBodyPart = new MimeBodyPart();
-	   messageBodyPart.setContent("Tutorials point email", "text/html");
+		// Sending the message
+		Transport.send(message);
 
-	   Multipart multipart = new MimeMultipart();
-	   multipart.addBodyPart(messageBodyPart);
-	   MimeBodyPart attachPart = new MimeBodyPart();
+		System.out.println("Email sent successfully.");
 
-	   //attachPart.attachFile("/var/tmp/image19.png");
-	  // multipart.addBodyPart(attachPart);
-	  // msg.setContent(multipart);
-	   Transport.send(msg);   
-	   
-}
+	} catch (MessagingException e) {
+		e.printStackTrace();
 	}
+  }
+}
