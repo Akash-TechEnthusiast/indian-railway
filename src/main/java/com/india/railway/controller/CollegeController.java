@@ -1,7 +1,5 @@
 package com.india.railway.controller;
 
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
@@ -42,23 +40,31 @@ public class CollegeController {
     	return collegeService.saveCollege(col);
     }
 
+    @GetMapping("/byName")
+    public Page<College> getCollegeByName(@RequestParam(name = "name") String name,
+            @RequestParam(name = "page",defaultValue = "0") int page,
+            @RequestParam(name = "size",defaultValue = "10") int size) {
+
+                System.out.println("hello test");
+    
+        return collegeService.getCollegeByName(name,page,size);
+    }
+
+
     @GetMapping
     public List<College> getAllColleges() {
         return collegeService.getAllColleges();
     }
 
-    @GetMapping("/byName")
-    public Page<College> getCollegeByName(@RequestParam(name = "name") String name,
-            @RequestParam(name = "page",defaultValue = "0") int page,
-            @RequestParam(name = "size",defaultValue = "10") int size) {
-    
-        return collegeService.getCollegeByName(name,page,size);
-    }
+  
+ 
+
 
     @DeleteMapping("/{id}")
     public void deleteCollege(@PathVariable Long id) {
     	collegeService.deleteCollege(id);
     }
+
 
     @PostMapping("/{authorId}/books/{bookId}")
     public College addBookToAuthor(@PathVariable Long collgeId, @PathVariable Long departmentId) {
