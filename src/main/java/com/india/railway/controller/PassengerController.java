@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.india.railway.model.Passenger;
 import com.india.railway.service.EmployeService;
+import com.india.railway.service.PassengerService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -21,15 +22,15 @@ import lombok.extern.slf4j.Slf4j;
 public class PassengerController {
 
     @Autowired
-    private EmployeService employeeService;
+    private PassengerService passengerService;
 
     // Add new Customer
     @PostMapping("/addPassenger")
-    public String addEmployee(@RequestBody Passenger employee) {
+    public String addEmployee(@RequestBody Passenger passenger) {
 
-        log.info("Info level================>>" + employee.toString());
+        log.info("Info level================>>" + passenger.toString());
         log.error("Error level");
-        return employeeService.addEmployee(employee);
+        return passengerService.addPassenger(passenger);
     }
 
 }
