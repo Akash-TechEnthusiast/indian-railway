@@ -1,13 +1,14 @@
 package com.india.railway.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.india.railway.model.Passenger;
 
 public interface PassengerService {
 
     // Method to get customer by its Id
-    Passenger getPassenger(Long id);
+    Optional<Passenger> getPassenger(Long id);
 
     // Method to add a new Customer
     // into the database
