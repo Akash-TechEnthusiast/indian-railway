@@ -45,11 +45,11 @@ public class CollegeService {
         return (List<College>) collegeRepository.findAll();
     }
 
-    public Page<College> getCollegeByName(String id,int page,int size) {
+    public Page<College> getCollegeByName(String name,int page,int size) {
     	Sort sort = "desc".equalsIgnoreCase("desc") ? Sort.by("amount").descending() : Sort.by("amount").ascending();
         Pageable pageable = PageRequest.of(page, size,sort);
       
-        return  collegeRepository.findByName(id, pageable);
+        return  collegeRepository.findByName(name, pageable);
     	
        // return collegeRepository.findById(id).orElse(null);
     }

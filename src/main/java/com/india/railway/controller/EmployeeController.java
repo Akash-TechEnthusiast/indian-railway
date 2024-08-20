@@ -22,21 +22,7 @@ public class EmployeeController {
 	@Autowired
 	private EmployeService employeeService;
 	
-	/*  http://localhost:9191/addEmployee
-	{
-	    "id":1,
-	    "name":"Akash",
-	    "address":"Wanaparthy"
-	}*/
-	/*  http://localhost:9191/getEmployee/1
-	}*/
-	
-	/*  http://localhost:9191/updateEmployee
-	{
-	    "id":1,
-	    "name":"Akash",
-	    "address":"Wanaparthy"
-	}*/
+
 
 	// Get Customer by Id
 	@GetMapping("/getEmployee/{id}")
