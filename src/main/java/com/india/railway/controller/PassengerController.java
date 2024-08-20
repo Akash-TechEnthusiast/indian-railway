@@ -1,7 +1,5 @@
 package com.india.railway.controller;
 
-
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,5 +20,16 @@ import lombok.extern.slf4j.Slf4j;
 
 public class PassengerController {
 
-    
-} 
+    @Autowired
+    private EmployeService employeeService;
+
+    // Add new Customer
+    @PostMapping("/addEmployee")
+    public String addEmployee(@RequestBody Employee employee) {
+
+        log.info("Info level================>>" + employee.toString());
+        log.error("Error level");
+        return employeeService.addEmployee(employee);
+    }
+
+}
