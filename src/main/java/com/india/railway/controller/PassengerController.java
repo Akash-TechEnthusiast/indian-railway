@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.india.railway.model.Employee;
+import com.india.railway.model.Passenger;
 import com.india.railway.service.EmployeService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -24,8 +24,8 @@ public class PassengerController {
     private EmployeService employeeService;
 
     // Add new Customer
-    @PostMapping("/addEmployee")
-    public String addEmployee(@RequestBody Employee employee) {
+    @PostMapping("/addPassenger")
+    public String addEmployee(@RequestBody Passenger employee) {
 
         log.info("Info level================>>" + employee.toString());
         log.error("Error level");
