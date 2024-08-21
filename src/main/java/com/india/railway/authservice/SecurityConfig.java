@@ -18,8 +18,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-   
-
     @Autowired
     private JwtRequestFilter jwtRequestFilter;
 
@@ -29,12 +27,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-        //auth.userDetailsService(userDetailsService);
+        // auth.userDetailsService(userDetailsService);
     }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-		// return NoOpPasswordEncoder.getInstance();
+        // return NoOpPasswordEncoder.getInstance();
         return new BCryptPasswordEncoder();
     }
 
@@ -47,11 +45,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
-                .authorizeRequests().antMatchers("/authenticate","/register","/products","/products/name/{name}","/").permitAll()
-                .anyRequest().authenticated() // for any other request it should be validated 
+                .authorizeRequests()
+                .antMatchers("/", "/welcome", "/authenticate", "/register", "/products", "/products/name/{name}")
+                .permitAll()
+                .anyRequest().authenticated() // for any other request it should be validated
                 .and().sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
     }
 }
-

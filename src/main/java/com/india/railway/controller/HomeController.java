@@ -1,14 +1,16 @@
 package com.india.railway.controller;
 
-
-
-
 import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.india.railway.exception.ErrorResponse;
 
 @Controller
 public class HomeController {
@@ -20,4 +22,19 @@ public class HomeController {
         model.addAttribute("items", items);
         return "index"; // Refers to src/main/resources/templates/index.html
     }
+
+    @RequestMapping("/welcome")
+    public String welcome(Model model) {
+        model.addAttribute("welcome_msg", "Global Exception Handler Example");
+        // String name = null;
+        // name.length();
+        return "welcome"; // Refers to src/main/resources/templates/index.html
+    }
+
+    @ExceptionHandler(NullPointerException.class)
+    public String handleNullPointerException(Model model) {
+        model.addAttribute("error_msg", "Some problem occured");
+        return "error";
+    }
+
 }
