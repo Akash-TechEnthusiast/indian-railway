@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.india.railway.exception.NoSuchEmployeeExistsException;
+import com.india.railway.exception.NoSuchPassengerExistsException;
+import com.india.railway.exception.PassengerAlreadyExistsException;
+
 import com.india.railway.model.Passenger;
 import com.india.railway.repository.PassengerRepository;
 
@@ -19,7 +22,9 @@ public class PassengerServiceImpl implements PassengerService {
     @Override
     public Optional<Passenger> getPassenger(Long id) {
         // TODO Auto-generated method stub
-        return passengerRepository.findById(id);
+
+        return Optional.ofNullable(passengerRepository.findById(id)
+                .orElseThrow(() -> new NoSuchPassengerExistsException("NO PASSENGER PRESENT WITH ID = " + id)));
 
         // throw new UnsupportedOperationException("Unimplemented method
         // 'getPassenger'");
@@ -27,17 +32,30 @@ public class PassengerServiceImpl implements PassengerService {
 
     @Override
     public String addPassenger(Passenger passenger) {
-        passengerRepository.save(passenger);
-        return "";
+        // passengerRepository.save(passenger);
+        // return "";
         // throw new UnsupportedOperationException("Unimplemented method
         // 'addPassenger'");
+
+        Passenger existingPassenger = passengerRepository.findById(passenger.getId()).orElse(null);
+        if (existingPassenger == null) {
+            passengerRepository.save(passenger);
+            return "Passenger added successfully";
+        } else
+            throw new PassengerAlreadyExistsException("Passenger already exists!!");
     }
 
     @Override
     public String updatePassenger(Passenger passenger) {
-        // TODO Auto-generated method stub
-        passengerRepository.save(passenger);
-        throw new UnsupportedOperationException("Unimplemented method 'updatePassenger'");
+        Passenger existingPassenger = passengerRepository.findById(passenger.getId()).orElse(null);
+        if (existingPassenger == null)
+            throw new NoSuchEmployeeExistsException("No Such Employee exists!!");
+        else {
+            existingPassenger.setName(passenger.getName());
+            existingPassenger.setAddress(passenger.getAddress());
+            passengerRepository.save(existingPassenger);
+            return "Record updated Successfully";
+        }
     }
 
     @Override

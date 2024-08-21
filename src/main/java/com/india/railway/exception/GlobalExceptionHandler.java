@@ -21,4 +21,16 @@ public class GlobalExceptionHandler {
 		return new ErrorResponse(HttpStatus.NOT_FOUND.value(), ex.getMessage());
 	}
 
+	@ExceptionHandler(value = NoSuchPassengerExistsException.class)
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	public @ResponseBody ErrorResponse handleException(NoSuchPassengerExistsException ex) {
+		return new ErrorResponse(HttpStatus.NOT_FOUND.value(), ex.getMessage());
+	}
+
+	@ExceptionHandler(value = PassengerAlreadyExistsException.class)
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	public @ResponseBody ErrorResponse handleException(PassengerAlreadyExistsException ex) {
+		return new ErrorResponse(HttpStatus.NOT_FOUND.value(), ex.getMessage());
+	}
+
 }
