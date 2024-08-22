@@ -1,3 +1,4 @@
+package com.india.railway.exception;
 
 public class PassengerAlreadyExistsException extends RuntimeException {
 

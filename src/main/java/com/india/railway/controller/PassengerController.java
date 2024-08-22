@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,10 +17,11 @@ import com.india.railway.model.Passenger;
 import com.india.railway.service.PassengerService;
 
 import lombok.extern.slf4j.Slf4j;
+import javax.validation.Valid;
 
 @RestController
 @Slf4j
-
+@Validated
 public class PassengerController {
 
     @Autowired
@@ -26,11 +29,11 @@ public class PassengerController {
 
     // Add new Customer
     @PostMapping("/addPassenger")
-    public String addPassenger(@RequestBody Passenger passenger) {
+    public ResponseEntity<String> addPassenger(@Valid @RequestBody Passenger passenger) {
 
         log.info("Info level================>>" + passenger.toString());
         log.error("Error level");
-        return passengerService.addPassenger(passenger);
+        return ResponseEntity.ok(passengerService.addPassenger(passenger));
     }
 
     // Get Customer by Id
