@@ -1,15 +1,20 @@
 package com.india.railway.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
@@ -21,6 +26,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import java.util.*;
 
 @Entity
 @Data // getter and setter and tostring
@@ -35,8 +41,6 @@ public class Passenger {
 
     @Size(min = 5, max = 15, message = "Name should be atlease 5 characters and not more than 15 characters")
     private String name;
-
-    private String pnumber;
 
     @Min(value = 18, message = "Age must be greater than or equal to 18")
     private int age;
@@ -58,20 +62,26 @@ public class Passenger {
     @DateTimeFormat(pattern = "yyyy-MM-dd") // Ensures proper date formatting
     private LocalDate dob;
 
-    private String address;
-    private String gender;
-    // private String dob;
-    private String city;
-    private String state;
-
     @NotNull(message = "Pincode number cannot be null")
     @Pattern(regexp = "\\d{6}", message = "Pincode number must be exactly 6 digits")
     private String pincode;
 
-    // extra fileds for verification
-
     @DecimalMin(value = "100.00", message = "Salary must be at least 100.00")
     @DecimalMax(value = "100000.00", message = "Salary cannot exceed 10000.00")
     private Long salary;
+
+    // extra fileds for verification
+    private String pnumber;
+    private String gender;
+    // private String dob;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "passenger_address", // Name of the join table
+            joinColumns = @JoinColumn(name = "passenger_id", referencedColumnName = "id"), // Foreign key in join table
+                                                                                           // pointing to Passenger
+            inverseJoinColumns = @JoinColumn(name = "address_id", referencedColumnName = "id") // Foreign key in join
+    )
+    // @NotEmpty(message = "Passenger must have at least one address.")
+    private List<Address> address;
 
 }

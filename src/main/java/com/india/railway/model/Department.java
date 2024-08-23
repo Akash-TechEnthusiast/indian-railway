@@ -1,7 +1,5 @@
 package com.india.railway.model;
 
-
-
 import javax.persistence.*;
 
 @Entity
@@ -14,7 +12,8 @@ public class Department {
 
     // Constructors, getters, setters
 
-    public Department() {}
+    public Department() {
+    }
 
     public Department(String title) {
         this.title = title;

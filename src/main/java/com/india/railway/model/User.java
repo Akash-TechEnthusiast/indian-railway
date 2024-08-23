@@ -14,35 +14,36 @@ import javax.persistence.*;
 @Table(name = "users")
 public class User {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    
-    @Column(nullable = false, unique = true)
-    private String username;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    @Column(nullable = false, unique = true)
-    private String email;
-    
-    @Column(nullable = false, unique = true)
-    private String mobileno;
-    
-    @Column(nullable = false, unique = true)
-    private String password;
-    
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "profile_id", referencedColumnName = "id")
-    private UserProfile userProfile;
-    
-    public User() {}
+	@Column(nullable = false, unique = true)
+	private String username;
 
-    public User(String username, String password, UserProfile userProfile) {
-        this.username = username;
-        this.password = password;
-        this.userProfile = userProfile;
-    }
+	@Column(nullable = false, unique = true)
+	private String email;
 
-    public Long getId() {
+	@Column(nullable = false, unique = true)
+	private String mobileno;
+
+	@Column(nullable = false, unique = true)
+	private String password;
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "profile_id", referencedColumnName = "id")
+	private UserProfile userProfile;
+
+	public User() {
+	}
+
+	public User(String username, String password, UserProfile userProfile) {
+		this.username = username;
+		this.password = password;
+		this.userProfile = userProfile;
+	}
+
+	public Long getId() {
 		return id;
 	}
 
@@ -81,16 +82,13 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
+
 	public UserProfile getUserProfile() {
 		return userProfile;
 	}
 
 	public void setUserProfile(UserProfile userProfile) {
-			this.userProfile = userProfile;
+		this.userProfile = userProfile;
 	}
-
-
-	
 
 }
