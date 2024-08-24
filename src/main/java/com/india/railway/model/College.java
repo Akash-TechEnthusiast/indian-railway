@@ -21,10 +21,10 @@ public class College {
 
     @Column(length = 5)
     private String name;
-    
+
     @Column(precision = 12, scale = 4) // Decimal type with precision 12 and scale 4
-    private Double amount;  // all department people salary cost
-    
+    private Double amount; // all department people salary cost
+
     @Column(nullable = false) // Column must not be null
     private Boolean active;
 
@@ -33,16 +33,13 @@ public class College {
     private Date established_year;
 
     @OneToMany
-    @JoinTable(
-        name = "college_departments",
-        joinColumns = @JoinColumn(name = "college_id"),
-        inverseJoinColumns = @JoinColumn(name = "department_id")
-    )
+    @JoinTable(name = "college_departments", joinColumns = @JoinColumn(name = "college_id"), inverseJoinColumns = @JoinColumn(name = "department_id"))
     private Set<Department> department = new HashSet<>();
 
     // Constructors, getters, setters
 
-    public College() {}
+    public College() {
+    }
 
     public College(String name) {
         this.name = name;
@@ -63,7 +60,7 @@ public class College {
     public void setName(String name) {
         this.name = name;
     }
-    
+
     public void setActive(Boolean active) {
         this.active = active;
     }
@@ -77,11 +74,10 @@ public class College {
     }
 
     public void addDepartment(Department book) {
-    	department.add(book);
+        department.add(book);
     }
 
     public void removeDepartment(Department book) {
-    	department.remove(book);
+        department.remove(book);
     }
 }
-

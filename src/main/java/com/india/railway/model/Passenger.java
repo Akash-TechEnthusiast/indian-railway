@@ -36,13 +36,13 @@ import java.util.*;
 @Data // getter and setter and tostring
 @AllArgsConstructor
 @NoArgsConstructor
-@EntityListeners(CustomIdGenerationListener.class)
+// @EntityListeners(CustomIdGenerationListener.class)
 @Table(name = "passenger")
 public class Passenger {
 
     @Id
     // @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @CustomGeneratedValue(sequenceName = "my_entity")
+    // @CustomGeneratedValue(sequenceName = "my_entity")
     private Long id;
 
     @Size(min = 5, max = 15, message = "Name should be atlease 5 characters and not more than 15 characters")
@@ -59,9 +59,9 @@ public class Passenger {
     @NotBlank(message = "Email is mandatory")
     private String email;
 
-    @NotNull(message = "Phone number cannot be null")
+    @NotNull(message = "cell no number cannot be null")
     @Pattern(regexp = "\\+91[0-9]{10}", message = "Phone number must start with +91 and be followed by 10 digits")
-    private String cellNo;
+    private String cellno;
 
     @NotNull(message = "Date of birth cannot be null")
     @Past(message = "Date of birth must be a past date")
@@ -90,7 +90,7 @@ public class Passenger {
     // @NotEmpty(message = "Passenger must have at least one address.")
     // @NotEmptyAdress
     @Valid // Ensure this is present to validate related entities (posts)
-    @Size(min = 1, message = "User must have at least one post.") // Ensure at least one post
+    @Size(min = 1, message = "Passenger must have at least one address.") // Ensure at least one post
     private List<Address> address;
 
 }

@@ -149,7 +149,7 @@ public class IndianRailway {
 		return mailSender;
 	}
 
-	@PostConstruct
+	// @PostConstruct
 	public void generatepdf() {
 		Document document = new Document();
 		try {

@@ -1,11 +1,11 @@
 package com.india.railway.service;
 
-//import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-//import javax.persistence.EntityManager;
-//import javax.persistence.Query;
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Service
 public class TableBasedIdGeneratorService {
@@ -16,6 +16,7 @@ public class TableBasedIdGeneratorService {
     @Transactional
     public Long generateNextId(String sequenceName, int incrementSize) {
         // Fetch the current value from the id_generator table
+
         /*
          * Query selectQuery = entityManager.createNativeQuery(
          * "SELECT current_value FROM id_generator WHERE sequence_name = :sequenceName FOR UPDATE"
@@ -35,6 +36,6 @@ public class TableBasedIdGeneratorService {
          * updateQuery.executeUpdate();
          */
 
-        return (long) 4589;
+        return (long) 4590;
     }
 }
