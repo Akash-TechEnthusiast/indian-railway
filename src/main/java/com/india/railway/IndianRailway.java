@@ -31,6 +31,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+
 import com.example.rules.Fact;
 import com.example.rules.RuleActivationListener;
 import com.itextpdf.text.Paragraph;
@@ -61,6 +63,7 @@ import lombok.extern.slf4j.Slf4j;
 @EnableJpaRepositories(basePackages = "com.india.railway.repository")
 @EnableMongoRepositories(basePackages = "com.india.railway.repository")
 @ComponentScan(basePackages = { "com.india.railway" })
+@EnableTransactionManagement
 @Slf4j
 public class IndianRailway {
 
