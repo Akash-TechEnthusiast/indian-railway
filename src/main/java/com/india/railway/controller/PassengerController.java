@@ -29,7 +29,7 @@ public class PassengerController {
 
     // Add new Customer
     @PostMapping("/addPassenger")
-    public ResponseEntity<String> addPassenger(@Valid @RequestBody Passenger passenger) {
+    public ResponseEntity<String> addPassenger(@Valid @RequestBody Passenger passenger) throws IllegalAccessException {
 
         log.info("Info level================>>" + passenger.toString());
         log.error("Error level");

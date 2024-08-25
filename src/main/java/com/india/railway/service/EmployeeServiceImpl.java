@@ -2,6 +2,10 @@ package com.india.railway.service;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +19,9 @@ public class EmployeeServiceImpl implements EmployeService {
 
 	@Autowired
 	private EmployeRepository empRespository;
+
+	@Autowired
+	private EntityManager entityManager;
 
 	// Method to get customer by Id.Throws
 	// NoSuchElementException for invalid Id
@@ -54,6 +61,29 @@ public class EmployeeServiceImpl implements EmployeService {
 	public List<Employee> getAllEmployee() {
 		// TODO Auto-generated method stub
 		return empRespository.findAll();
+	}
+
+	@Transactional
+	@Override
+	public Long generateNextId(String sequenceName, int incrementSize) {
+		// Fetch the current value from the id_generator table
+
+		Query selectQuery = entityManager.createNativeQuery(
+				"SELECT current_value FROM id_generator WHERE sequence_name = :sequenceName FOR UPDATE");
+		selectQuery.setParameter("sequenceName", sequenceName);
+		Long currentValue = ((Number) selectQuery.getSingleResult()).longValue();
+
+		// Increment the current value
+		Long nextValue = currentValue + incrementSize;
+
+		// Update the current value in the table
+		Query updateQuery = entityManager.createNativeQuery(
+				"UPDATE id_generator SET current_value = :nextValue WHERE sequence_name = :sequenceName");
+		updateQuery.setParameter("nextValue", nextValue);
+		updateQuery.setParameter("sequenceName", sequenceName);
+		updateQuery.executeUpdate();
+
+		return nextValue;
 	}
 
 }

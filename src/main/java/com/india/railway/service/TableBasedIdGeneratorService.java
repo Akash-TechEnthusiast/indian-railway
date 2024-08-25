@@ -10,32 +10,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 @Service
 public class TableBasedIdGeneratorService {
 
-    // @Autowired
-    // private EntityManager entityManager;
+    @Autowired
+    private EntityManager entityManager;
 
     @Transactional
-    public Long generateNextId(String sequenceName, int incrementSize) {
+    public Long generateNextId(String entity_name, int incrementSize) {
         // Fetch the current value from the id_generator table
 
-        /*
-         * Query selectQuery = entityManager.createNativeQuery(
-         * "SELECT current_value FROM id_generator WHERE sequence_name = :sequenceName FOR UPDATE"
-         * );
-         * selectQuery.setParameter("sequenceName", sequenceName);
-         * Long currentValue = ((Number) selectQuery.getSingleResult()).longValue();
-         * 
-         * // Increment the current value
-         * Long nextValue = currentValue + incrementSize;
-         * 
-         * // Update the current value in the table
-         * Query updateQuery = entityManager.createNativeQuery(
-         * "UPDATE id_generator SET current_value = :nextValue WHERE sequence_name = :sequenceName"
-         * );
-         * updateQuery.setParameter("nextValue", nextValue);
-         * updateQuery.setParameter("sequenceName", sequenceName);
-         * updateQuery.executeUpdate();
-         */
+        Query selectQuery = entityManager.createNativeQuery(
+                "SELECT current_value FROM auto_code_generation WHERE entity_name = :entity_name FOR UPDATE");
+        selectQuery.setParameter("entity_name", entity_name);
+        Long currentValue = ((Number) selectQuery.getSingleResult()).longValue();
 
-        return (long) 4590;
+        // Increment the current value
+        Long nextValue = currentValue + incrementSize;
+
+        // Update the current value in the table
+        Query updateQuery = entityManager.createNativeQuery(
+                "UPDATE auto_code_generation SET current_value = :nextValue WHERE entity_name = :entity_name");
+        updateQuery.setParameter("nextValue", nextValue);
+        updateQuery.setParameter("entity_name", entity_name);
+        updateQuery.executeUpdate();
+
+        return nextValue;
+
     }
 }

@@ -1,33 +1,15 @@
 package com.india.railway.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-// import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Service;
-// import org.springframework.stereotype.Service;
-// import javax.persistence.PersistenceContext;
-import javax.persistence.PrePersist;
 import java.lang.reflect.Field;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 @Service
-public class CustomIdGenerationListener {
-
-    // @Autowired
-    // private TableBasedIdGeneratorService idGeneratorService;
+public class AutoCodeGeneratorService {
 
     @Autowired
-    private AutoCodeGeneratorService autoCodeGeneratorService;
+    private TableBasedIdGeneratorService tableBasedIdGeneratorService;
 
-    // @PersistenceContext
-
-    // @Autowired
-    /*
-     * @Autowired(required = false)
-     * 
-     * @Autowired(required = false)
-     * private EntityManager entityManager;
-     */
-
-    @PrePersist
     public void generateId(Object entity) throws IllegalAccessException {
         Field[] fields = entity.getClass().getDeclaredFields();
 
@@ -38,7 +20,8 @@ public class CustomIdGenerationListener {
                 String entityName = customGeneratedValue.entityName();
                 int idvalue = customGeneratedValue.incrementSize();
                 // Generate the next ID using the TableBasedIdGeneratorService
-                Long nextId = 90l;
+                Long nextId = tableBasedIdGeneratorService.generateNextId(entityName,
+                        idvalue);
 
                 // Set the generated ID to the field
                 field.setAccessible(true);

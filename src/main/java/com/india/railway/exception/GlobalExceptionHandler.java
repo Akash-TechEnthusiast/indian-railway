@@ -27,6 +27,13 @@ public class GlobalExceptionHandler {
 		return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
 	}
 
+	// @ExceptionHandler(value = NullPointerException.class)
+	// @ResponseStatus(HttpStatus.BAD_REQUEST)
+	// public @ResponseBody ErrorResponse handleException(NullPointerException ex) {
+	// return new ErrorResponse(HttpStatus.NOT_FOUND.value(),
+	// ex.getCause().toString());
+	// }
+
 	@ExceptionHandler(value = InvalidDataAccessApiUsageException.class)
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	public @ResponseBody ErrorResponse handleException(InvalidDataAccessApiUsageException ex) {

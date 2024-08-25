@@ -1,10 +1,15 @@
 package com.india.railway.service;
 
+import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Optional;
 
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.india.railway.exception.NoSuchEmployeeExistsException;
 import com.india.railway.exception.NoSuchPassengerExistsException;
@@ -19,6 +24,9 @@ public class PassengerServiceImpl implements PassengerService {
     @Autowired
     PassengerRepository passengerRepository;
 
+    @Autowired
+    AutoCodeGeneratorService autoCodeGeneratorService;
+
     @Override
     public Optional<Passenger> getPassenger(Long id) {
         // TODO Auto-generated method stub
@@ -31,7 +39,7 @@ public class PassengerServiceImpl implements PassengerService {
     }
 
     @Override
-    public String addPassenger(Passenger passenger) {
+    public String addPassenger(Passenger passenger) throws IllegalAccessException {
         // passengerRepository.save(passenger);
         // return "";
         // throw new UnsupportedOperationException("Unimplemented method
@@ -39,6 +47,13 @@ public class PassengerServiceImpl implements PassengerService {
 
         Passenger existingPassenger = passengerRepository.findById(passenger.getId()).orElse(null);
         if (existingPassenger == null) {
+
+            // long nextvalueis =
+            // autoCodeGeneratorService.generateNextId("passenger_entity", 1);
+            // System.out.println(nextvalueis);
+
+            autoCodeGeneratorService.generateId(passenger);
+
             passengerRepository.save(passenger);
             return "Passenger added successfully";
         } else
