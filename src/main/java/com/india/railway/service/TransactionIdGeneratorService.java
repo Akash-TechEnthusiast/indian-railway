@@ -8,7 +8,7 @@ import javax.persistence.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @Service
-public class TableBasedIdGeneratorService {
+public class TransactionIdGeneratorService {
 
     @Autowired
     private EntityManager entityManager;

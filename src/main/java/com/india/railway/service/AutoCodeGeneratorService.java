@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 public class AutoCodeGeneratorService {
 
     @Autowired
-    private TableBasedIdGeneratorService tableBasedIdGeneratorService;
+    private TransactionIdGeneratorService transactionIdGeneratorService;
 
     public void generateId(Object entity) throws IllegalAccessException {
         Field[] fields = entity.getClass().getDeclaredFields();
@@ -20,7 +20,7 @@ public class AutoCodeGeneratorService {
                 String entityName = customGeneratedValue.entityName();
                 int idvalue = customGeneratedValue.incrementSize();
                 // Generate the next ID using the TableBasedIdGeneratorService
-                Long nextId = tableBasedIdGeneratorService.generateNextId(entityName,
+                Long nextId = transactionIdGeneratorService.generateNextId(entityName,
                         idvalue);
 
                 // Set the generated ID to the field
