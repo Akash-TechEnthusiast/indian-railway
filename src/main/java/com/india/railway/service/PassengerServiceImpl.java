@@ -1,20 +1,12 @@
 package com.india.railway.service;
 
-import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Optional;
-
-import javax.persistence.EntityManager;
-import javax.persistence.Query;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.india.railway.exception.NoSuchEmployeeExistsException;
 import com.india.railway.exception.NoSuchPassengerExistsException;
 import com.india.railway.exception.PassengerAlreadyExistsException;
-
 import com.india.railway.model.Passenger;
 import com.india.railway.repository.PassengerRepository;
 
