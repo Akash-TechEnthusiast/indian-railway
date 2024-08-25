@@ -18,5 +18,4 @@ public interface EmployeService {
 
     List<Employee> getAllEmployee();
 
-    Long generateNextId(String sequenceName, int incrementSize);
 }
