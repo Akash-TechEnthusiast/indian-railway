@@ -24,6 +24,7 @@ import org.drools.definition.rule.Rule;
 import org.drools.io.ResourceFactory;
 import org.drools.runtime.StatefulKnowledgeSession;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.SpringBootVersion;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -68,6 +69,9 @@ import lombok.extern.slf4j.Slf4j;
 public class IndianRailway {
 
 	public static void main(String[] args) {
+
+		String springBootVersion = SpringBootVersion.getVersion();
+		System.out.println("Spring Boot Version: " + springBootVersion);
 
 		//// new change detected
 		// again new change
