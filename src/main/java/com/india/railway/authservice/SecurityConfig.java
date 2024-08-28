@@ -24,10 +24,37 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private CustomUserDetailsService userDetailsService;
 
+    // below code is for authentication purpose
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+        String simpleClassName = auth.getClass().getName();
+        System.out.println(simpleClassName); // Output: String
+
+        System.out.println("hello");
+
         // auth.userDetailsService(userDetailsService);
+    }
+
+    // below code is for authorization purpose
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        // for test environment
+        // http.authorizeRequests().anyRequest().permitAll().and().csrf().disable();
+        // for production environment
+
+        http.csrf().disable()
+                .authorizeRequests()
+                .antMatchers("/", "/welcome", "/authenticate", "/register", "/products",
+                        "/products/name/{name}")
+                // .hasRole("admin").antMatchers("/")
+                .permitAll()
+                .anyRequest().authenticated() // for any other request it should be validated
+                .and().sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+        http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+        System.out.println("test");
+
     }
 
     @Bean
@@ -42,27 +69,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return super.authenticationManagerBean();
     }
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        // for test environment
-        http
-                .authorizeRequests()
-                .anyRequest().permitAll()
-                .and()
-                .csrf().disable();
-        // for production environment
-        /*
-         * http.csrf().disable()
-         * .authorizeRequests()
-         * .antMatchers("/", "/welcome", "/authenticate", "/register", "/products",
-         * "/products/name/{name}")
-         * .permitAll()
-         * .anyRequest().authenticated() // for any other request it should be validated
-         * .and().sessionManagement()
-         * .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-         * http.addFilterBefore(jwtRequestFilter,
-         * UsernamePasswordAuthenticationFilter.class);
-         * 
-         */
-    }
 }

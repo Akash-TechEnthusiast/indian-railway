@@ -3,6 +3,7 @@ package com.india.railway.exception;
 import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -27,6 +28,12 @@ public class GlobalExceptionHandler {
 		return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
 	}
 
+	@ExceptionHandler(value = BadCredentialsException.class)
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	public @ResponseBody ErrorResponse badCredentialsException(BadCredentialsException ex) {
+		return new ErrorResponse(HttpStatus.NOT_FOUND.value(), "username or password is incorrect");
+	}
+	// org.springframework.security.authentication.BadCredentialsException
 	// @ExceptionHandler(value = NullPointerException.class)
 	// @ResponseStatus(HttpStatus.BAD_REQUEST)
 	// public @ResponseBody ErrorResponse handleException(NullPointerException ex) {

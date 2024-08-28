@@ -40,15 +40,14 @@ public class JwtRequestFilter extends OncePerRequestFilter {
                 username = jwtUtil.extractUsername(jwt);
             } catch (ExpiredJwtException e) {
                 String isRefreshToken = request.getHeader("isRefreshToken");
-                String requestURL = request.getRequestURL().toString();// 
-                if (isRefreshToken != null && isRefreshToken.equals("true") && requestURL.contains("refreshtoken") ) {
+                String requestURL = request.getRequestURL().toString();//
+                if (isRefreshToken != null && isRefreshToken.equals("true") && requestURL.contains("refreshtoken")) {
                     allowForRefreshToken(e, request);
                 } else {
                     request.setAttribute("exception", e);
                 }
             }
         }
-
 
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
 
@@ -61,8 +60,9 @@ public class JwtRequestFilter extends OncePerRequestFilter {
                 usernamePasswordAuthenticationToken
                         .setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                 SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
-                
-                // Generate a new token with an extended expiry time and set it in the response header
+
+                // Generate a new token with an extended expiry time and set it in the response
+                // header
                 String newJwt = jwtUtil.refreshToken(jwt);
                 response.setHeader("Authorization", "Bearer " + newJwt);
             }

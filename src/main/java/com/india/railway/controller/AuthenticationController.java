@@ -6,8 +6,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
-
-import com.india.railway.authservice.AuthenticationRequest;
+import com.india.railway.authservice.JwtRequest;
+import com.india.railway.authservice.JwtResponse;
 import com.india.railway.authservice.JwtUtil;
 import com.india.railway.model.User;
 import com.india.railway.repository.UserRepository;
@@ -25,14 +25,22 @@ public class AuthenticationController {
     private JwtUtil jwtUtil;
 
     @PostMapping("/authenticate")
-    public String createAuthenticationToken(@RequestBody AuthenticationRequest authenticationRequest) throws Exception {
-        authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(authenticationRequest.getUsername(),
-                        authenticationRequest.getPassword()));
-        final User userDetails = UserRepository.findByUsername(authenticationRequest.getUsername());
+    public JwtResponse createAuthenticationToken(@RequestBody JwtRequest jwtRequest) throws Exception {
+
+        authenticate(jwtRequest.getUsername(), jwtRequest.getPassword());
+        final User userDetails = UserRepository.findByUsername(jwtRequest.getUsername());
         final String jwt = jwtUtil.generateToken(userDetails.getUsername());
 
-        return jwt;
+        return new JwtResponse(jwt);
+    }
+
+    private void authenticate(String username, String password) throws Exception {
+        try {
+            authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(username, password));
+        } catch (Exception e) {
+            throw new Exception("Invalid credentials", e);
+        }
     }
 
     @PostMapping("/register")
