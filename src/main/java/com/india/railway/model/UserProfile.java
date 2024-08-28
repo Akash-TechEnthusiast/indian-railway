@@ -1,7 +1,5 @@
 package com.india.railway.model;
 
-
-
 import javax.persistence.*;
 
 @Entity
@@ -20,7 +18,8 @@ public class UserProfile {
 
     // Constructors, getters, and setters
 
-    public UserProfile() {}
+    public UserProfile() {
+    }
 
     public UserProfile(String firstName, String lastName, String email) {
         this.firstName = firstName;

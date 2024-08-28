@@ -40,19 +40,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         // for test environment
-        // http.authorizeRequests().anyRequest().permitAll().and().csrf().disable();
+        http.authorizeRequests().anyRequest().permitAll().and().csrf().disable();
         // for production environment
 
-        http.csrf().disable()
-                .authorizeRequests()
-                .antMatchers("/", "/welcome", "/authenticate", "/register", "/products",
-                        "/products/name/{name}")
-                // .hasRole("admin").antMatchers("/")
-                .permitAll()
-                .anyRequest().authenticated() // for any other request it should be validated
-                .and().sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+        /*
+         * http.csrf().disable()
+         * .authorizeRequests()
+         * .antMatchers("/", "/welcome", "/authenticate", "/register", "/products",
+         * "/products/name/{name}")
+         * // .hasRole("admin").antMatchers("/")
+         * .permitAll()
+         * .anyRequest().authenticated() // for any other request it should be validated
+         * .and().sessionManagement()
+         * .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+         * http.addFilterBefore(jwtRequestFilter,
+         * UsernamePasswordAuthenticationFilter.class);
+         */
         System.out.println("test");
 
     }

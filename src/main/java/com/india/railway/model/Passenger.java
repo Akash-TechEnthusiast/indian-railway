@@ -5,7 +5,9 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.Valid;
 import javax.validation.constraints.DecimalMax;
@@ -74,6 +76,13 @@ public class Passenger {
     private String gender;
     // private String dob;
 
+    @Valid // Ensure this is present to validate related entities (user)
+    // @Size(min = 1, message = "Passenger must be mapped to user.")
+    @OneToOne(cascade = CascadeType.ALL, optional = false)
+    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false) // Foreign key in User table
+    @NotNull(message = "user must not be null")
+    private User user;
+
     @OneToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "passenger_address", // Name of the join table
             joinColumns = @JoinColumn(name = "passenger_id", referencedColumnName = "id"), // Foreign key in join table
@@ -81,9 +90,15 @@ public class Passenger {
             inverseJoinColumns = @JoinColumn(name = "address_id", referencedColumnName = "id") // Foreign key in join
     )
     // @NotEmpty(message = "Passenger must have at least one address.")
-    // @NotEmptyAdress
-    @Valid // Ensure this is present to validate related entities (posts)
+    @Valid // Ensure this is present to validate related entities (address)
     @Size(min = 1, message = "Passenger must have at least one address.") // Ensure at least one post
     private List<Address> address;
+
+    @ManyToMany
+    @JoinTable(name = "passenger_train", // Name of the join table
+            joinColumns = @JoinColumn(name = "passenger_id"), // Column in the join table for Student
+            inverseJoinColumns = @JoinColumn(name = "train_id") // Column in the join table for Course
+    )
+    private Set<Train> trains;
 
 }
