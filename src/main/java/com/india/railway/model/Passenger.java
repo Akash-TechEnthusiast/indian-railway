@@ -6,6 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -76,6 +77,8 @@ public class Passenger {
         private String pnumber;
         private String gender;
         // private String dob;
+
+     
 
         @Valid // Ensure this is present to validate related entities (user)
                // @Size(min = 1, message = "Passenger must be mapped to user.")
