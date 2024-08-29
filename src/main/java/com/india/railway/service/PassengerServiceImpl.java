@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.india.railway.exception.EntityNotFoundException;
 import com.india.railway.exception.NoSuchEmployeeExistsException;
 import com.india.railway.exception.NoSuchPassengerExistsException;
 import com.india.railway.exception.PassengerAlreadyExistsException;
@@ -43,6 +45,10 @@ public class PassengerServiceImpl implements PassengerService {
             // long nextvalueis =
             // autoCodeGeneratorService.generateNextId("passenger_entity", 1);
             // System.out.println(nextvalueis);
+
+            if (passenger != null && (passenger.getTrains() == null || passenger.getTrains().isEmpty())) {
+                throw new EntityNotFoundException("Trains list could not be empty ");
+            }
 
             autoCodeGeneratorService.generateId(passenger);
 

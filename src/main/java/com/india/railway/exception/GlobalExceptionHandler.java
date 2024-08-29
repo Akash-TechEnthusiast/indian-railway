@@ -53,6 +53,12 @@ public class GlobalExceptionHandler {
 		return new ErrorResponse(HttpStatus.NOT_FOUND.value(), ex.getMessage());
 	}
 
+	@ExceptionHandler(value = EntityNotFoundException.class)
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	public @ResponseBody ErrorResponse handleEntityNotFoundException(EntityNotFoundException ex) {
+		return new ErrorResponse(HttpStatus.NOT_FOUND.value(), ex.getMessage());
+	}
+
 	@ExceptionHandler(value = EmployeeAlreadyExistsException.class)
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	public @ResponseBody ErrorResponse handleException(EmployeeAlreadyExistsException ex) {

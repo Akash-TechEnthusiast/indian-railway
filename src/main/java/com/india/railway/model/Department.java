@@ -1,5 +1,7 @@
 package com.india.railway.model;
 
+
+
 import javax.persistence.*;
 
 @Entity
@@ -9,6 +11,9 @@ public class Department {
     private Long id;
 
     private String title;
+
+   // @ManyToMany(mappedBy = "departments")
+  //  private Set<Passenger> passengers = new HashSet<>();
 
     // Constructors, getters, setters
 

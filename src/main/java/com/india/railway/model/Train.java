@@ -6,6 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -31,7 +32,9 @@ public class Train {
     private String start_station;
     private String end_station;
 
+    // @ManyToMany(mappedBy = "trains")
+    // @NotEmpty(message = "A train must have at least one passenger.")
     @ManyToMany(mappedBy = "trains")
-    private Set<Passenger> passengers;
+    private Set<Passenger> passengers = new HashSet<>();
 
 }
