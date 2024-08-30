@@ -153,6 +153,28 @@ public class IndianRailway {
 		return mailSender;
 	}
 
+	@Bean
+	public Session MailSenderSession() {
+		final String username = "akash922.g@gmail.com";
+		final String appPassword = "suqwdrmksaalnoac"; // Generated App Password from Gmail
+
+		// Setting up mail server properties
+		Properties props = new Properties();
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.smtp.starttls.enable", "true");
+		props.put("mail.smtp.host", "smtp.gmail.com");
+		props.put("mail.smtp.port", "587");
+		// Creating a new session with an authenticator
+		Session session = Session.getInstance(props, new javax.mail.Authenticator() {
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication(username, appPassword);
+			}
+		});
+
+		return session;
+
+	}
+
 	// @PostConstruct
 	public void generatepdf() {
 		Document document = new Document();

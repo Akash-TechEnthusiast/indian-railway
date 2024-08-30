@@ -28,6 +28,9 @@ public class UserService {
     private UserRepository userRepository;
 
     @Autowired
+    private Session sessionsession;
+
+    @Autowired
     private PasswordResetTokenRepository passwordResetTokenRepository;
 
     public User saveUser(User user) {
@@ -67,30 +70,10 @@ public class UserService {
     private void sendResetEmail(User user, String token) {
         String resetLink = "https://localhost:9191/railway/user/reset-password?token=" + token
                 + "&newPassword=akashgandham";
-        // SimpleMailMessage message = new SimpleMailMessage();
-        // message.setTo(user.getEmail());
-        // message.setSubject("Password Reset Request");
-        // message.setText("To reset your password, click the link below:\n" +
-        // resetLink);
 
-        final String username = "akash922.g@gmail.com";
-        final String appPassword = "suqwdrmksaalnoac"; // Generated App Password from Gmail
-
-        // Setting up mail server properties
-        Properties props = new Properties();
-        props.put("mail.smtp.auth", "true");
-        props.put("mail.smtp.starttls.enable", "true");
-        props.put("mail.smtp.host", "smtp.gmail.com");
-        props.put("mail.smtp.port", "587");
-        // Creating a new session with an authenticator
-        Session session = Session.getInstance(props, new javax.mail.Authenticator() {
-            protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(username, appPassword);
-            }
-        });
         try {
-            // Creating a new email message
-            MimeMessage message = new MimeMessage(session);
+
+            MimeMessage message = new MimeMessage(sessionsession);
             message.setFrom(new InternetAddress("akash922.g@gmail.com"));
             message.setRecipients(Message.RecipientType.TO,
                     InternetAddress.parse("akashglobalconnection@gmail.com"));
