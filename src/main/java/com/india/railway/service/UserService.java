@@ -15,12 +15,16 @@ import java.util.Optional;
 import java.util.Properties;
 import java.util.UUID;
 
+import javax.mail.Flags;
+import javax.mail.Folder;
 import javax.mail.Message;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
+import javax.mail.Store;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.mail.search.FlagTerm;
 
 @Service
 public class UserService {
@@ -66,6 +70,7 @@ public class UserService {
             sendResetEmail(userOptional.get(), token);
         }
     }
+    // yhlynqtvepkqwpas
 
     private void sendResetEmail(User user, String token) {
         String resetLink = "https://localhost:9191/railway/user/reset-password?token=" + token
@@ -82,6 +87,7 @@ public class UserService {
 
             // Sending the message
             Transport.send(message);
+            // autoreply();
 
         } catch (Exception e) {
             System.out.println("error sending email");
@@ -110,6 +116,65 @@ public class UserService {
             // passwordResetTokenRepository.deleteById(resetToken.getId());
         } else {
             throw new IllegalStateException("Invalid token");
+        }
+    }
+
+    public void autoreply() {
+
+        String host = "imap.gmail.com"; // IMAP host
+        String username = "akashglobalconnection@gmail.com"; // your email
+        String password = "yhlynqtvepkqwpas"; // your password
+
+        // Set properties for the mail session
+        Properties properties = new Properties();
+        properties.put("mail.store.protocol", "imaps");
+        properties.put("mail.imap.host", host);
+        properties.put("mail.imap.port", "993");
+
+        try {
+            // Create a mail session
+            Session emailSession = Session.getDefaultInstance(properties);
+            Store store = emailSession.getStore("imaps");
+            store.connect(host, username, password);
+
+            // Open the inbox folder
+            Folder inbox = store.getFolder("INBOX");
+            inbox.open(Folder.READ_WRITE);
+
+            // Fetch unread messages
+            Message[] messages = inbox.search(new FlagTerm(new Flags(Flags.Flag.SEEN), false));
+
+            for (Message message : messages) {
+                System.out.println("Email Subject: " + message.getSubject());
+                System.out.println("From: " + message.getFrom()[0]);
+
+                // message.getAllRecipients();
+                // message.getReceivedDate();
+
+                // Create a reply message
+                // Message replyMessage = new MimeMessage(emailSession);
+                // replyMessage = (MimeMessage) message.reply(false);
+                // replyMessage.setFrom(new InternetAddress(username));
+                // replyMessage.setText("This is an automated reply.");
+
+                MimeMessage replyMessage = new MimeMessage(sessionsession);
+                replyMessage.setFrom(new InternetAddress("akashglobalconnection@gmail.com"));
+                replyMessage.setRecipients(Message.RecipientType.TO,
+                        InternetAddress.parse(message.getFrom()[0].toString()));
+                replyMessage.setSubject("This is an automated reply.");
+                replyMessage.setText("This is an automated reply.");
+
+                // Send the reply
+                Transport.send(replyMessage);
+                System.out.println("Replied to email: " + message.getSubject());
+            }
+
+            // Close connections
+            inbox.close(false);
+            store.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
