@@ -15,6 +15,8 @@ import com.india.railway.model.User;
 import com.india.railway.model.UserProfile;
 import com.india.railway.service.UserService;
 
+import reactor.core.publisher.Flux;
+
 @RequestMapping(path = "/user")
 @RestController
 public class UserController {
@@ -75,5 +77,11 @@ public class UserController {
 		System.out.println();
 		userService.resetPassword(token, newPassword);
 		return ResponseEntity.ok("Password has been reset.");
+	}
+
+	@GetMapping(path = "/flux")
+	public Flux<String> getFlux() {
+		return Flux.just("Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 6", "Item 7", "Item 8", "Item 9",
+				"Item 10");
 	}
 }
