@@ -5,6 +5,9 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Properties;
 import java.util.Set;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Collections;
 
 import javax.annotation.PostConstruct;
 import javax.mail.Message;
@@ -28,6 +31,9 @@ import org.springframework.boot.SpringBootVersion;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.data.domain.AuditorAware;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -36,6 +42,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.example.rules.Fact;
 import com.example.rules.RuleActivationListener;
+import com.india.railway.service.AuditorAwareImpl;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfContentByte;
@@ -43,6 +50,7 @@ import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfPageEventHelper;
 import com.itextpdf.text.pdf.PdfWriter;
+
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Image;
 import java.io.BufferedReader;
@@ -66,6 +74,7 @@ import lombok.extern.slf4j.Slf4j;
 @ComponentScan(basePackages = { "com.india.railway" })
 @EnableTransactionManagement
 @Slf4j
+@EnableJpaAuditing
 public class IndianRailway {
 
 	public static void main(String[] args) {
@@ -79,7 +88,21 @@ public class IndianRailway {
 		// System.setProperty(AbstractEnvironment.ACTIVE_PROFILES_PROPERTY_NAME, "dev");
 		SpringApplication.run(IndianRailway.class, args);
 
+		List<String> list = new ArrayList<>();
+		list.add("apple");
+		list.add("banana");
+		Collections.sort(list); // Sorts the list
+		Collections.reverse(list);
+		Collections.reverseOrder();
+		Collections.emptyList();
+		System.out.println();
+
 	}
+
+	// @Bean
+	// public AuditorAware<String> auditorAware() {
+	// return new AuditorAwareImpl();
+	// }
 
 	private static void countRulesInDroolsFile() {
 

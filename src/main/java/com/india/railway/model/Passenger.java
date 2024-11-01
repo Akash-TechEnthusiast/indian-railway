@@ -16,7 +16,6 @@ import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
@@ -35,7 +34,7 @@ import java.util.*;
 @NoArgsConstructor
 // @EntityListeners(CustomIdGenerationListener.class)
 @Table(name = "passenger")
-public class Passenger {
+public class Passenger extends Auditable {
 
         @Id
         // @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -77,8 +76,6 @@ public class Passenger {
         private String pnumber;
         private String gender;
         // private String dob;
-
-     
 
         @Valid // Ensure this is present to validate related entities (user)
                // @Size(min = 1, message = "Passenger must be mapped to user.")

@@ -1,6 +1,5 @@
 package com.india.railway.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -38,45 +37,5 @@ public class MenuItem {
     @ManyToOne
     @JoinColumn(name = "parentmenuitem_id")
     private MenuItem menuitem;
-
-    // Constructor
-    public MenuItem(String name, String url) {
-        this.name = name;
-        this.url = url;
-        this.children = new ArrayList<>();
-    }
-
-    // Getter and setter for name
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    // Getter and setter for URL
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    // Getter for child menu items
-    public List<MenuItem> getChildren() {
-        return children;
-    }
-
-    // Add a child menu item
-    public void addChild(MenuItem child) {
-        this.children.add(child);
-    }
-
-    // Remove a child menu item
-    public void removeChild(MenuItem child) {
-        this.children.remove(child);
-    }
 
 }
