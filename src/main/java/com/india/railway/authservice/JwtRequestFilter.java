@@ -9,12 +9,15 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.MalformedJwtException;
+import io.jsonwebtoken.UnsupportedJwtException;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import io.jsonwebtoken.SignatureException;
 
 @Component
 public class JwtRequestFilter extends OncePerRequestFilter {
@@ -46,10 +49,19 @@ public class JwtRequestFilter extends OncePerRequestFilter {
                 } else {
                     request.setAttribute("exception", e);
                 }
+            } catch (SignatureException | MalformedJwtException | UnsupportedJwtException
+                    | IllegalArgumentException ex) {
+                System.err.println("Invalid JWT signature");
+                response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                response.setContentType("application/json");
+                response.getWriter().write("{\"error\": \"Invalid or expired token\"}");
+                return;
             }
         }
 
-        if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+        if (username != null && SecurityContextHolder.getContext().getAuthentication() == null)
+
+        {
 
             UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
 
@@ -65,6 +77,14 @@ public class JwtRequestFilter extends OncePerRequestFilter {
                 // header
                 String newJwt = jwtUtil.refreshToken(jwt);
                 response.setHeader("Authorization", "Bearer " + newJwt);
+            } else {
+
+                // If the token is invalid, return 401 Unauthorized error
+                response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                response.setContentType("application/json");
+                response.getWriter().write("{\"error\": \"Invalid or expired token\"}");
+                return; // Stop further processing
+
             }
         }
         chain.doFilter(request, response);

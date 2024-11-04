@@ -31,6 +31,4 @@ public class Auditable {
 
     @CreatedBy
     private String createdBy;
-
-    // Getters and setters
 }
