@@ -2,7 +2,7 @@ package com.india.railway.model;
 
 
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 public class Department {

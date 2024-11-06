@@ -2,7 +2,7 @@ package com.india.railway.email;
 
 import java.util.Properties;
 
-import javax.annotation.PostConstruct;
+import jakarta.annotation.PostConstruct;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;

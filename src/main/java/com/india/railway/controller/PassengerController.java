@@ -17,7 +17,8 @@ import com.india.railway.model.Passenger;
 import com.india.railway.service.PassengerService;
 
 import lombok.extern.slf4j.Slf4j;
-import javax.validation.Valid;
+
+import jakarta.validation.Valid;
 
 @RestController
 @Slf4j

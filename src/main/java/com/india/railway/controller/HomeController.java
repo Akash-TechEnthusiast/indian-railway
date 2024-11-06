@@ -19,6 +19,12 @@ public class HomeController {
         return "index"; // Refers to src/main/resources/templates/index.html
     }
 
+    @GetMapping("/login")
+    public String home() {
+
+        return "Helloworld"; // Refers to src/main/resources/templates/index.html
+    }
+
     @RequestMapping("/welcome")
     public String welcome(Model model) {
         model.addAttribute("welcome_msg", "Global Exception Handler Example");

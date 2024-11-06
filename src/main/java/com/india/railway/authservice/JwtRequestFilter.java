@@ -11,19 +11,37 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.UnsupportedJwtException;
-
+/*
+ * 
+ * import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+ */
+/* 
+import javax.servlet.Filter;
 import javax.servlet.FilterChain;
+import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import io.jsonwebtoken.SignatureException;
+import io.jsonwebtoken.SignatureException; */
+
+import jakarta.servlet.DispatcherType;
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.ServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 @Component
 public class JwtRequestFilter extends OncePerRequestFilter {
 
-    @Autowired
-    private UserDetailsService userDetailsService;
+    // @Autowired
+    // private UserDetailsService userDetailsService;
 
     @Autowired
     private JwtUtil jwtUtil;
@@ -49,8 +67,9 @@ public class JwtRequestFilter extends OncePerRequestFilter {
                 } else {
                     request.setAttribute("exception", e);
                 }
-            } catch (SignatureException | MalformedJwtException | UnsupportedJwtException
-                    | IllegalArgumentException ex) {
+                // SignatureException | MalformedJwtException | UnsupportedJwtException
+                // | IllegalArgumentException
+            } catch (Exception ex) {
                 System.err.println("Invalid JWT signature");
                 response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
                 response.setContentType("application/json");
@@ -63,29 +82,35 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
         {
 
-            UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
-
-            if (jwtUtil.validateToken(jwt, userDetails.getUsername())) {
-
-                UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
-                        userDetails, null, userDetails.getAuthorities());
-                usernamePasswordAuthenticationToken
-                        .setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-                SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
-
-                // Generate a new token with an extended expiry time and set it in the response
-                // header
-                String newJwt = jwtUtil.refreshToken(jwt);
-                response.setHeader("Authorization", "Bearer " + newJwt);
-            } else {
-
-                // If the token is invalid, return 401 Unauthorized error
-                response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-                response.setContentType("application/json");
-                response.getWriter().write("{\"error\": \"Invalid or expired token\"}");
-                return; // Stop further processing
-
-            }
+            /*
+             * UserDetails userDetails =
+             * this.userDetailsService.loadUserByUsername(username);
+             * 
+             * if (jwtUtil.validateToken(jwt, userDetails.getUsername())) {
+             * 
+             * UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new
+             * UsernamePasswordAuthenticationToken(
+             * userDetails, null, userDetails.getAuthorities());
+             * usernamePasswordAuthenticationToken
+             * .setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+             * SecurityContextHolder.getContext().setAuthentication(
+             * usernamePasswordAuthenticationToken);
+             * 
+             * // Generate a new token with an extended expiry time and set it in the
+             * response
+             * // header
+             * String newJwt = jwtUtil.refreshToken(jwt);
+             * response.setHeader("Authorization", "Bearer " + newJwt);
+             * } else {
+             * 
+             * // If the token is invalid, return 401 Unauthorized error
+             * response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+             * response.setContentType("application/json");
+             * response.getWriter().write("{\"error\": \"Invalid or expired token\"}");
+             * return; // Stop further processing
+             * 
+             * }
+             */
         }
         chain.doFilter(request, response);
     }

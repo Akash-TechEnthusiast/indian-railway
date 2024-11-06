@@ -2,6 +2,8 @@ package com.india.railway.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,6 +26,9 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+
 	@PostMapping(path = "/adduser")
 	public @ResponseBody String addUsers(@RequestParam String userName, @RequestParam String number,
 			@RequestParam String email, @RequestParam String password) {
@@ -33,7 +38,7 @@ public class UserController {
 
 		user.setMobileno(number);
 		user.setEmail(email);
-		user.setPassword(password);
+		user.setPassword(passwordEncoder.encode(password));
 
 		UserProfile up = new UserProfile();
 		up.setEmail("user@gmail.com");

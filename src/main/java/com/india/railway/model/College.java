@@ -1,19 +1,18 @@
 package com.india.railway.model;
 
-import javax.persistence.*;
-
 import lombok.Data;
 
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Data
+@Table
 public class College {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,7 +21,8 @@ public class College {
     @Column(length = 5)
     private String name;
 
-    @Column(precision = 12, scale = 4) // Decimal type with precision 12 and scale 4
+    // @Column(precision = 12, scale = 4) // Decimal type with precision 12 and
+    // scale 4
     private Double amount; // all department people salary cost
 
     @Column(nullable = false) // Column must not be null

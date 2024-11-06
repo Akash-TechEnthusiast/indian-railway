@@ -2,8 +2,6 @@ package com.india.railway.controller;
 
 import java.util.List;
 
-import javax.annotation.PostConstruct;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -89,6 +87,5 @@ public class BookController {
 		message.setText("<html><body><h1>Hello, World!</h1><p>This is a test HTML email.</p></body></html>");
 		message.setFrom("ghussenaiah@gmail.com");
 
-	
 	}
 }

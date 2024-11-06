@@ -5,8 +5,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 import com.india.railway.model.College;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface CollegeRepository extends PagingAndSortingRepository<College, Long> {
-	
-	 Page<College> findByName(String name, Pageable pageable);
+
+	Page<College> findByName(String name, Pageable pageable);
 }

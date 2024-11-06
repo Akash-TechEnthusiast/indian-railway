@@ -15,8 +15,8 @@ import com.india.railway.repository.UserRepository;
 @RestController
 public class AuthenticationController {
 
-    @Autowired
-    private AuthenticationManager authenticationManager;
+    // @Autowired
+    // private AuthenticationManager authenticationManager;
 
     @Autowired
     private UserRepository UserRepository;
@@ -36,8 +36,8 @@ public class AuthenticationController {
 
     private void authenticate(String username, String password) throws Exception {
         try {
-            authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(username, password));
+            // authenticationManager.authenticate(
+            // new UsernamePasswordAuthenticationToken(username, password));
         } catch (Exception e) {
             throw new Exception("Invalid credentials", e);
         }

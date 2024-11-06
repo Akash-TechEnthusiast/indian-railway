@@ -1,6 +1,6 @@
 package com.india.railway.model;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "user_profile")

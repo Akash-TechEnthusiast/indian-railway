@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import javax.annotation.PostConstruct;
+//import javax.annotation.PostConstruct;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
@@ -161,20 +161,22 @@ public class IndianRailway {
 
 	}
 
-	@Bean
-	public JavaMailSender javaMailSender() {
-		JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
-		mailSender.setHost("smtp.gmail.com");
-		mailSender.setPort(587);
-		mailSender.setUsername("ghussenaiah@gmail.com");
-		mailSender.setPassword("WANAparthy@922");
-
-		Properties props = mailSender.getJavaMailProperties();
-		props.put("mail.smtp.auth", "true");
-		props.put("mail.smtp.starttls.enable", "true");
-
-		return mailSender;
-	}
+	/*
+	 * @Bean
+	 * public JavaMailSender javaMailSender() {
+	 * JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+	 * mailSender.setHost("smtp.gmail.com");
+	 * mailSender.setPort(587);
+	 * mailSender.setUsername("ghussenaiah@gmail.com");
+	 * mailSender.setPassword("WANAparthy@922");
+	 * 
+	 * Properties props = mailSender.getJavaMailProperties();
+	 * props.put("mail.smtp.auth", "true");
+	 * props.put("mail.smtp.starttls.enable", "true");
+	 * 
+	 * return mailSender;
+	 * }
+	 */
 
 	@Bean
 	public Session MailSenderSession() {
@@ -198,7 +200,7 @@ public class IndianRailway {
 
 	}
 
-	// @PostConstruct
+	// @PostConstrut
 	public void generatepdf() {
 		Document document = new Document();
 		try {

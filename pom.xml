@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.3.0.M1</version>
+		<version>3.3.5</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.javatpoint</groupId>
@@ -15,7 +15,7 @@
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
-		<java.version>1.8</java.version>
+		<java.version>17</java.version>
 	</properties>
 
 	<dependencies>
@@ -36,10 +36,11 @@
        <version>2.3.3.RELEASE</version>
     </dependency>
     
-       <dependency>
+  <!--     <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-data-elasticsearch</artifactId>
     </dependency>
+-->
 
 
 	  <dependency>
@@ -53,10 +54,7 @@
     <artifactId>spring-boot-starter-validation</artifactId>
 </dependency>
 
-<dependency>
-    <groupId>org.hibernate</groupId>
-    <artifactId>hibernate-core</artifactId>
-</dependency>
+
 
 	<dependency>
     <groupId>org.springframework.boot</groupId>
@@ -69,6 +67,26 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-security</artifactId>
     </dependency>
+
+	<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-oauth2-client</artifactId>
+</dependency>
+<dependency>
+    <groupId>jakarta.validation</groupId>
+    <artifactId>jakarta.validation-api</artifactId>
+    <version>3.0.2</version> <!-- Use the latest version -->
+</dependency>
+
+
+
+<dependency>
+    <groupId>javax.servlet</groupId>
+    <artifactId>javax.servlet-api</artifactId>
+    <version>4.0.1</version> <!-- Or your preferred version -->
+    <scope>provided</scope>
+</dependency>
+
    <!-- JWT -->
     <dependency>
         <groupId>io.jsonwebtoken</groupId>
@@ -86,12 +104,17 @@
         </exclusion> 
     </exclusions> 
 		</dependency>
-		
+
+
+
 		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>		
-				<scope>provided</scope>
-		</dependency> 
+    <groupId>org.projectlombok</groupId>
+    <artifactId>lombok</artifactId>
+    <version>1.18.24</version> <!-- Use the latest version available -->
+    <scope>provided</scope>
+</dependency>
+
+
 		<dependency> 
     	<groupId>org.springframework.boot</groupId> 
    		 <artifactId>spring-boot-starter-log4j2</artifactId> 
@@ -166,14 +189,17 @@
     
 	</dependencies>
 
-	<build>
+	 <build>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <version>2.5.0</version> 
 			</plugin>
 		</plugins>
-	</build>
+	</build> 
+
+
 
 	<repositories>
 		<repository>
